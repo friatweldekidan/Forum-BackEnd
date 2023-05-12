@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-
+require('dotenv').config();
 // const pool = mysql.createPool({
 //     host: process.env.DB_HOST,
 //     user: process.env.DB_USER,
@@ -9,6 +9,10 @@ const mysql = require("mysql2");
 //   });
 
 const pool = mysql.createConnection(process.env.DATABASE_URL);
+
+// pool.getConnection(() => {
+//   console.log("database connected");
+// });
 
 let registration = `CREATE TABLE if not exists registration(
     user_id int auto_increment,
@@ -23,7 +27,7 @@ let profile = `CREATE TABLE if not exists profile(
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     PRIMARY KEY (user_profile_id)
-
+ 
   )`;
 let question = `CREATE TABLE if not exists question(
     question_id int auto_increment,
